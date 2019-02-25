@@ -1,0 +1,13 @@
+select {
+    margin: 10px auto !important;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    font-size: 20px !important;
+}
+
+.addLink a {
+    text-decoration: none;
+    color: black;
+}

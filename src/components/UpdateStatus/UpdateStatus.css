@@ -1,0 +1,12 @@
+.white-border {
+    border-bottom: 2px solid white !important;
+}
+
+.btn-center {
+    margin: 0 auto;
+    margin-top: 35px;
+}
+
+.move {
+    margin-left: 30px !important;
+}

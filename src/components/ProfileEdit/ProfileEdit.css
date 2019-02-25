@@ -1,0 +1,20 @@
+.push {
+    margin-left: 17px;
+}
+
+.btnedit {
+    border-radius: 20px;
+}
+
+.btnedit:first-child {
+    margin-right: 20px;
+}
+
+.btnedit:last-child {
+    margin-left: 20px;
+}
+
+.textName {
+    font-size: 30px !important;
+    font-weight: 200 !important;
+}

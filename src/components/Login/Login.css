@@ -1,0 +1,13 @@
+.container {
+    margin: 0 auto;
+    margin-top: 10%;
+    padding: 50px;
+    width: 30% !important;
+    background-color: rgba(255, 255, 255, .5) !important;
+    border-radius: 15px;
+}
+
+.logreginput {
+    border-radius: 10px;
+    outline: none;
+}
