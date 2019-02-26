@@ -24,10 +24,10 @@ class AddTopic extends React.Component {
         })
         .then(user => {
           if (done) {
-            this.props.onRouteChange("addTopic");
+            this.props.onRouteChange("addTopicSuccess");
           }
           else {
-            this.props.onRouteChange("adminDisplay");
+            this.props.onRouteChange("addTopicFailed");
           }
         });
     }
@@ -39,12 +39,7 @@ class AddTopic extends React.Component {
     render() {
         return (
             <div>
-                <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    <p className='f3 link dim white underline pa3 pointer' onClick={() => this.props.onRouteChange('adminDisplay')}>Go Back</p>
-                    <div style={{justifyContent: 'flex-start'}}>
-                        <p className='f3 link dim white underline pa3 pointer' onClick={() => this.props.onRouteChange('login')}>Sign Out</p>
-                    </div>
-                </nav>
+                <p className='actionButton f3 link dim white underline pa3 pointer' onClick={() => this.props.onRouteChange('adminDisplay')}><i className='fa fa-arrow-circle-o-left fa-2x goBackIcon'></i></p>
                 <form className="measure aligncenter center">
                     <legend className="f3 fw6 ph0 mh0 center"></legend>
                     <div className="mt3">
@@ -55,6 +50,9 @@ class AddTopic extends React.Component {
                         <a onClick={() => this.addTopicCall()} className="logreginput b ph3 pv2 mv2 input-reset ba b--white bg-transparent grow pointer white f6 dib">Add Topic</a>
                     </div>
                 </form>
+                <div>
+                    <p className='actionButton f3 link dim white underline pa3 pointer' onClick={() => this.props.onRouteChange('login')}><i className='fa fa-power-off fa-2x signOutIcon'></i></p>
+                </div>
             </div>
         );
     };

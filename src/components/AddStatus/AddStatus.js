@@ -33,31 +33,26 @@ const AddStatus = (props) => {
         })
         .then(user => {
             if (done) {
-                props.onRouteChange("addStatus");
+                props.onRouteChange("addStatusSuccess");
             }
             else {
-                props.onRouteChange("userDisplay");
+                props.onRouteChange("addStatusError");
             }
         });
     }
     return (
         <div>
-            <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-                <p className='f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('userDisplay')}>Go Back</p>
-                <div style={{justifyContent: 'flex-start'}}>
-                    <p className='f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('login')}>Sign Out</p>
-                </div>
-            </nav>
-            <div className="container shadow-4">
+            <p className='actionButton f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('userDisplay')}><i className='fa fa-arrow-circle-o-left fa-2x goBackIcon'></i></p>
+            <div className="containerAddStatus shadow-4">
                 <form className="measure center">
-                    <legend className="f3 fw6 ph0 mh0 center">Add Status</legend>
+                    <legend className="f3 fw6 ph0 mh0 white center">Add Status</legend>
                     <div className="mt3">
-                        <select onChange={topicChange} className="dropdown" name="topics">
+                        <select onChange={topicChange} className="dropdown white bg-transparent white-border" name="topics">
                             {item}
                         </select>
                     </div>
                     <div className="mv3">
-                        <select onChange={statusChange} name="value">
+                        <select onChange={statusChange} name="value" className="white bg-transparent white-border">
                             <option value="1">Not Yet Started</option>
                             <option value="2">Beginner</option>
                             <option value="3">Intermediate</option>
@@ -65,9 +60,12 @@ const AddStatus = (props) => {
                         </select>
                     </div>
                     <div className="addLink">
-                        <a onClick={() => addingStatus()} className="logreginput b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">Add Topic</a>
+                        <a onClick={() => addingStatus()} className="logreginput b ph3 pv2 input-reset ba b--white white bg-transparent grow pointer f6 dib">Add Topic</a>
                     </div>
                 </form>     
+            </div>
+            <div>
+                <p className='actionButton f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('login')}><i className='fa fa-power-off fa-2x signOutIcon'></i></p>
             </div>
         </div>
     );

@@ -4,9 +4,6 @@ import './AdminDisplay.css';
 const AdminDisplay = (props) => {
     return(
         <div>
-            <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-                <p className='f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('login')}>Sign Out</p>
-            </nav>
             <div className="pa4 tc">
                 <div className="mainCircle circle tc shadow-5">
                     <i className="fa fa-user fa-4x iconCenter iconCenterMain"></i>
@@ -36,6 +33,9 @@ const AdminDisplay = (props) => {
                         <p className="tc textPropName1">Display Evaluvation</p>
                     </a>
                 </div>
+            </div>
+            <div>
+                <p className='actionButton f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('login')}><i className='fa fa-power-off fa-2x signOutIcon'></i></p>
             </div>
         </div>
     );

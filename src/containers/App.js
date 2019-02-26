@@ -12,7 +12,9 @@ import UpdateStatus from '../components/UpdateStatus/UpdateStatus'
 import DisplayEmployee from '../components/DisplayEmployee/DisplayEmployee';
 import DispalyEvaluvation from '../components/DisplayEvaluvation/DisplayEvaluvation';
 import ResetPassword from '../components/ResetPassword/ResetPassword';
+import FlashMassage from 'react-flash-message';
 import './App.css';
+import Loader from '../components/Loader/Loader';
 
 const particlesOption = {
   "particles": {
@@ -85,7 +87,7 @@ class App extends Component {
       email: email,
       password: pass
     }));
-    this.onRouteChange("userDisplay");
+    this.onRouteChange("loginLoad");
   }
 
   loadUser = (data) => {
@@ -149,7 +151,7 @@ class App extends Component {
         }
       });
     }
-    else if (route === "userDisplay")
+    else if (route === "loginLoad")
     {
       let done = true;
       fetch(`http://192.168.43.254:8083/evaluation/login?email=${this.state.email}&password=${this.state.password}`, {
@@ -158,18 +160,19 @@ class App extends Component {
       })
       .then(response => {
           if (response.status === 200) {
-              return response.json()
+            return response.json()
           }
           else {
-              done = false;
+            done = false;
           }
       })
       .then(user => {
           if (done) {
               this.loadUser(user);
+              this.onRouteChange("userDisplay");
           }
           else {
-              this.onRouteChange("login");
+              this.onRouteChange("loginError");
           }
       });
     }
@@ -254,22 +257,92 @@ class App extends Component {
       <div className="App">
         <Particles className='particles' params={particlesOption}/>
         { 
-          route === "login" ? 
-          <Login loginDetails={this.loginDetails} user={user} onRouteChange={this.onRouteChange} loadUser={this.loadUser}/> : 
+          route === "loginError" ? 
+          <div>
+            <FlashMassage duration={5000} persistOnHover={true}>
+              <div className="shadow-4 flash-message">Invalid Username/Password</div>
+            </FlashMassage>
+          <Login loginDetails={this.loginDetails} user={user} onRouteChange={this.onRouteChange} loadUser={this.loadUser}/> 
+          </div> :
+          route === "login"?
+          <Login loginDetails={this.loginDetails} user={user} onRouteChange={this.onRouteChange} loadUser={this.loadUser}/> :
+          route === "registerSuccess"?
+          <div>
+            <FlashMassage duration={5000} persistOnHover={true}>
+              <div className="shadow-4 flash-message">User Added Successfully</div>
+            </FlashMassage>
+            <Register onRouteChange={this.onRouteChange}/>
+          </div>:
+          route === "registerFailed"?
+          <div>
+            <FlashMassage duration={5000} persistOnHover={true}>
+              <div className="shadow-4 flash-message">User Failed To Add</div>
+            </FlashMassage>
+            <Register onRouteChange={this.onRouteChange}/>
+          </div>:
           route === "register"?
           <Register onRouteChange={this.onRouteChange}/> :
           route === "userDisplay"?
           <UserDisplay user={user} onRouteChange={this.onRouteChange}/> :
           route === "editProfile"?  
           <ProfileEdit user={user} onRouteChange={this.onRouteChange}/>:
+          route === "editProfileSuccess"?
+          <div>
+            <FlashMassage duration={5000} persistOnHover={true}>
+              <div className="shadow-4 flash-message">Password Changed Successfully</div>
+            </FlashMassage>
+            <ProfileEdit user={user} onRouteChange={this.onRouteChange}/>
+          </div>:
+          route === "addStatusSuccess"?
+          <div>
+            <FlashMassage duration={5000} persistOnHover={true}>
+              <div className="shadow-4 flash-message">Topic Added Successfully</div>
+            </FlashMassage>
+            <AddStatus allTopics = {allTopics} user = {user} onRouteChange={this.onRouteChange}/>
+          </div> :
+          route === "addStatusError"?
+          <div>
+            <FlashMassage duration={5000} persistOnHover={true}>
+              <div className="shadow-4 flash-message">Topic Already Added</div>
+            </FlashMassage>
+          <AddStatus allTopics = {allTopics} user = {user} onRouteChange={this.onRouteChange}/>
+          </div> :
           route === "addStatus"?
           <AddStatus allTopics = {allTopics} user = {user} onRouteChange={this.onRouteChange}/>:
+          route === "updateStatusSuccess"?
+          <div>
+            <FlashMassage duration={5000} persistOnHover={true}>
+              <div className="shadow-4 flash-message">Status Updated Successfully</div>
+            </FlashMassage>
+          <UpdateStatus updateValue={this.updateValue} user={user} onRouteChange={this.onRouteChange}/>
+          </div>:
+          route === "updateStatusFailed"?
+          <div>
+            <FlashMassage duration={5000} persistOnHover={true}>
+              <div className="shadow-4 flash-message">Topic Updated Failed</div>
+            </FlashMassage>
+            <UpdateStatus updateValue={this.updateValue} user={user} onRouteChange={this.onRouteChange}/>
+          </div>:
           route === "updateStatus"?
           <UpdateStatus updateValue={this.updateValue} user={user} onRouteChange={this.onRouteChange}/>:
           route === "adminDisplay"?
           <AdminDisplay onRouteChange={this.onRouteChange}/>:
           route === "hrDisplay"?
           <Hr onRouteChange={this.onRouteChange}/>:
+          route === "addTopicSuccess"?
+          <div>
+            <FlashMassage duration={5000} persistOnHover={true}>
+              <div className="shadow-4 flash-message">Topic Added Successfully</div>
+            </FlashMassage>
+            <AddTopic onRouteChange={this.onRouteChange}/>:            
+          </div>:
+          route === "addTopicFailed"?
+          <div>
+            <FlashMassage duration={5000} persistOnHover={true}>
+              <div className="shadow-4 flash-message">Topic Failed to Add</div>
+            </FlashMassage>
+            <AddTopic onRouteChange={this.onRouteChange}/>:            
+          </div>:
           route === "addTopic"?
           <AddTopic onRouteChange={this.onRouteChange}/>:
           route === "displayEmployee"?
@@ -278,7 +351,14 @@ class App extends Component {
           <DispalyEvaluvation evaluvation={evaluvation} onRouteChange={this.onRouteChange} />:
           route === "resetPassword"?
           <ResetPassword onRouteChange={this.onRouteChange} user={user} />:          
-          <h1 className='tc'>What are you doing here?</h1>
+          route === "resetPasswordFailed"?
+          <div>
+            <FlashMassage duration={5000} persistOnHover={true}>
+              <div className="shadow-4 flash-message">Password Failed To Update</div>
+            </FlashMassage>
+            <ResetPassword onRouteChange={this.onRouteChange} user={user} />
+          </div>:
+          <Loader />
         }
       </div>
     );

@@ -30,10 +30,10 @@ const UpdateStatus = (props) => {
         })
         .then(user => {
             if (done) {
-                props.onRouteChange("updateStatus");
+                props.onRouteChange("updateStatusSuccess");
             }
             else {
-                props.onRouteChange("userDisplay");
+                props.onRouteChange("updateStatusFailed");
             }
         });
     }
@@ -99,7 +99,8 @@ const UpdateStatus = (props) => {
                         </ul>
                         <div className="contain shadow-4"></div>
                     </div>
-                    <div className="tc pv7">
+                    <div className="containerUpdate shadow-4 tc">
+                        <h1 className="tc titleUpdate">Update Status</h1>
                         <select className='white bg-transparent white-border' onChange={topicdisp} defaultValue='1' name="updateValue">
                             {selectTopic}
                         </select>

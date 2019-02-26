@@ -13,12 +13,7 @@ const DisplayEmployee = (props) => {
     }
     return (
         <div>
-            <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-                <p className='f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('adminDisplay')}>Go Back</p>
-                <div style={{justifyContent: 'flex-start'}}>
-                    <p className='f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('login')}>Sign Out</p>
-                </div>
-            </nav>
+            <p className='actionButton f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('adminDisplay')}><i className='fa fa-arrow-circle-o-left fa-2x goBackIcon'></i></p>            
             <div className="pa4">
                 <div className="overflow-auto">
                     <table className="f6 w-100 mw8 center white" cellSpacing="0">
@@ -34,6 +29,9 @@ const DisplayEmployee = (props) => {
                     </tbody>
                     </table>
                 </div>
+            </div>
+            <div>
+                <p className='actionButton f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('login')}><i className='fa fa-power-off fa-2x signOutIcon'></i></p>
             </div>
         </div>
     );

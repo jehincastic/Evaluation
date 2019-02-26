@@ -23,7 +23,7 @@ class Login extends React.Component {
         if (this.state.signInEmail === "admin1523@chainsys.com" && this.state.signInPassword === "Admin@1234") {
             this.props.onRouteChange("adminDisplay");
         }
-        else if (this.state.signInEmail === "hr@chainsys.com" && this.state.signInEmail === "hr@1234") {
+        else if (this.state.signInEmail === "hr@chainsys.com" && this.state.signInPassword === "hr@1234") {
             this.props.onRouteChange("hrDisplay");
         }
         else {
@@ -34,17 +34,17 @@ class Login extends React.Component {
         return (
             <div className="container shadow-4">
                 <form className="measure center" method="POST">
-                    <legend className="f3 fw6 ph0 mh0 center"><i className="fa fa-user-circle-o fa-4x"></i></legend>
+                    <legend className="f3 fw6 ph0 mh0 center"><i className="fa fa-user-circle-o fa-4x white"></i></legend>
                     <div className="mt3">
-                        <label className="db fw6 lh-copy f5" htmlFor="email-address">Email</label>
-                        <input onChange={this.onEmailChange} className="logreginput pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address" required />
+                        <label className="db fw6 lh-copy white f5" htmlFor="email-address">Email</label>
+                        <input onChange={this.onEmailChange} className="logreginput pa2 input-reset ba bg-transparent hover-bg-transparent hover-white w-100" type="email" name="email-address"  id="email-address" required />
                     </div>
                     <div className="mv3">
-                        <label className="db fw6 lh-copy f5" htmlFor="password">Password</label>
-                        <input onChange={this.onPasswordChange} className="logreginput b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" required />
+                        <label className="db fw6 lh-copy white f5" htmlFor="password">Password</label>
+                        <input onChange={this.onPasswordChange} className="logreginput b pa2 input-reset ba bg-transparent hover-bg-transparent hover-white w-100" type="password" name="password"  id="password" required />
                     </div>
                     <div className="">
-                        <a onClick={this.onSubmitSignIn} className="logreginput b ph3 pv2 input-reset ba black b--black bg-transparent grow pointer f6 dib" type="submit">Sign in</a>
+                        <input onClick={this.onSubmitSignIn} className="logreginput b ph3 pv2 input-reset ba white b--white bg-transparent grow pointer f6 dib" type="submit" value="Sign In"/>
                     </div>
                 </form>     
             </div>

@@ -31,25 +31,20 @@ const ResetPassword = (props) => {
             })
             .then(user => {
                 if (done) {
-                    props.onRouteChange("editProfile");
+                    props.onRouteChange("editProfileSuccess");
                 }
                 else {
-                    props.onRouteChange("resetPassword");
+                    props.onRouteChange("resetPasswordFailed");
                 }
             });
         }
         else {
-            props.onRouteChange("resetPassword");
+            props.onRouteChange("resetPasswordFailed");
         }
     }
     return(
         <div>
-            <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-                <p className='f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('editProfile')}>Go Back</p>
-                <div style={{justifyContent: 'flex-start'}}>
-                    <p className='f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('login')}>Sign Out</p>
-                </div>
-            </nav>
+            <p className='actionButton f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('editProfile')}><i className='fa fa-arrow-circle-o-left fa-2x goBackIcon'></i></p>
             <form className="measure center" method="POST">
                 <div className="mt3">
                     <label className="db fw6 white lh-copy f5" htmlFor="old-password">Old Password</label>
@@ -67,6 +62,9 @@ const ResetPassword = (props) => {
                     <a onClick={() => onReset()} className="logreginput b ph3 pv2 input-reset ba white b--white bg-transparent grow pointer f6 dib">Change Password</a>
                 </div>
             </form>
+            <div>
+                <p className='actionButton f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('login')}><i className='fa fa-power-off fa-2x signOutIcon'></i></p>
+            </div>
         </div>
     );
 };

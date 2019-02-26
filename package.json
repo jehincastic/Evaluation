@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
+    "react-flash-message": "^1.0.2",
     "react-particles-js": "^2.4.2",
     "react-scripts": "2.1.5",
     "tachyons": "^4.11.1"
