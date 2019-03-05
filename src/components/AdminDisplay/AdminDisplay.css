@@ -9,7 +9,7 @@
     color: rgba(255, 255, 255, 0.78) !important;
     position: absolute;
     transform: translate(-50%,-50%);
-    color: wheat;
+    color: white;
     top: 50%;
     left: 50%;
 }
@@ -22,7 +22,7 @@
 
 .textPropName {
     font-size: 18px;
-    color: wheat;
+    color: white;
     margin: 0 auto;
     font-weight: 600;
     margin-top: 140px;
@@ -31,7 +31,7 @@
 .textPropName1 {
     color: rgba(255, 255, 255, 0.78) !important;
     font-size: 10px;
-    color: wheat;
+    color: white;
     margin: 0 auto;
     font-weight: 600;
     margin-top: 70%;

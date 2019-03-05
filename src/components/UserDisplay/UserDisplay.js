@@ -3,16 +3,29 @@ import './UserDisplay.css';
 
 const UserDisplay = (props) => {
     let items = [];
-    for (let i = 0; i < props.user.topic.length; i++) {
+    if (props.user.topic.length === 0) {
         items.push(
-            <tr className="stripe-dark">
-                <td className="pa3">{i+1}</td>
-                <td className="pa3">{props.user.topic[i]}</td>
-                <td className="pa3">{props.user.status[i]}</td>
-                <td className="pa3">{props.user.createdOn[i]}</td>
-                <td className="pa3">{props.user.updatedOn[i]}</td>
+            <tr className="tc stripe-dark">
+                <td className="pa3">1</td>
+                <td className="pa3">------</td>
+                <td className="pa3">------</td>
+                <td className="pa3">------</td>
+                <td className="pa3">------</td>
             </tr>
-        )
+        );
+    }
+    else {
+        for (let i = 0; i < props.user.topic.length; i++) {
+            items.push(
+                <tr className="stripe-dark">
+                    <td className="pa3">{i+1}</td>
+                    <td className="pa3">{props.user.topic[i]}</td>
+                    <td className="pa3">{props.user.status[i]}</td>
+                    <td className="pa3">{props.user.createdOn[i]}</td>
+                    <td className="pa3">{props.user.updatedOn[i]}</td>
+                </tr>
+            )
+        }
     }
     return (
         <div>
@@ -64,8 +77,8 @@ const UserDisplay = (props) => {
                         <div className="contain shadow-4"></div>
                     </div>
                     <div className="fl w-100 w-80-ns pa2">
-                        <h1 className="tc">{`Welcome ${props.user.name}`}</h1>
-                        <div className="pa4">
+                        <h1 className="tc">{`Hi ${props.user.name.toUpperCase()}`}</h1>
+                        <div className="pa4 table-pad">
                             <div className="overflow-auto">
                                 <table className="f6 w-100 mw8 center" cellSpacing="0">
                                 <thead>

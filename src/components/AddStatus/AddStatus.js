@@ -42,7 +42,7 @@ const AddStatus = (props) => {
     }
     return (
         <div>
-            <p className='actionButton f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('userDisplay')}><i className='fa fa-arrow-circle-o-left fa-2x goBackIcon'></i></p>
+            <p className='actionButton f3 link dim white underline pa3 pointer' onClick={() => props.onRouteChange('update')}><i className='fa fa-arrow-circle-o-left fa-2x goBackIcon'></i></p>
             <div className="containerAddStatus shadow-4">
                 <form className="measure center">
                     <legend className="f3 fw6 ph0 mh0 white center">Add Status</legend>

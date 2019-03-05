@@ -15,6 +15,7 @@ class AddTopic extends React.Component {
           headers: {'Content-Type': 'application/json'}
         })
         .then(response => {
+          console.log(response);  
           if (response.status === 200) {
             return response.json()
           }
@@ -44,7 +45,7 @@ class AddTopic extends React.Component {
                     <legend className="f3 fw6 ph0 mh0 center"></legend>
                     <div className="mt3">
                         <label className="db tc fw6 lh-copy f2 white" htmlFor="addTopic">Add Topic Name</label>
-                        <input onChange={this.addedTopic} className="logreginput pa2 input-reset ba bg-transparent white hover-bg-black hover-white w-100" type="text" name="addTopic"  id="addTopic" required />
+                        <input onChange={this.addedTopic} className="logreginput pa2 input-reset ba bg-transparent white hover-bg-transparent hover-white w-100" type="text" name="addTopic"  id="addTopic" required />
                     </div>
                     <div className="tc">
                         <a onClick={() => this.addTopicCall()} className="logreginput b ph3 pv2 mv2 input-reset ba b--white bg-transparent grow pointer white f6 dib">Add Topic</a>

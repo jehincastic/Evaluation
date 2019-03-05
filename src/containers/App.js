@@ -33,7 +33,7 @@ const particlesOption = {
       }
     }
   }
-}
+};
 
 class App extends Component {
   constructor() {
@@ -87,19 +87,50 @@ class App extends Component {
       email: email,
       password: pass
     }));
+    
     this.onRouteChange("loginLoad");
   }
 
   loadUser = (data) => {
     this.setState(Object.assign(this.state.user, { 
+      name: data.name,
+      empId: data.id
+    }));
+    let done = true;
+    this.getTopics();
+  }
+
+  getTopics = () => {
+    let done = true;
+    fetch(`http://192.168.43.254:8083/evaluation/userInfo?employeeId=${this.state.user.empId}`, {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'}
+    })
+    .then(response => {
+      if (response.status === 200) {
+        return response.json()
+      }
+      else {
+        done = false;
+      }
+    })
+    .then(user => {
+      if (done) {
+        this.loadTopic(user);
+        this.onRouteChange("userDisplay");
+      }
+      else {
+          this.onRouteChange("loading");
+      }
+    });
+  }
+
+  loadTopic = (data) => {
+    this.setState(Object.assign(this.state.user, { 
       topic: [],
       createdOn: [],
       updatedOn: [],
       status: []
-    }));
-    this.setState(Object.assign(this.state.user, { 
-      name: data[0].employee.name,
-      empId: data[0].employee.id
     }));
     for (let i = 0; i < data.length; i++) {
       let date = data[i].createdOn.split('T')[0];
@@ -151,29 +182,31 @@ class App extends Component {
         }
       });
     }
+    else if (route === "update") {
+      this.getTopics();
+    }
     else if (route === "loginLoad")
     {
       let done = true;
       fetch(`http://192.168.43.254:8083/evaluation/login?email=${this.state.email}&password=${this.state.password}`, {
-          method: 'post',
-          headers: {'Content-Type': 'application/json'}
+        method: 'post',
+        headers: {'Content-Type': 'application/json'}
       })
       .then(response => {
-          if (response.status === 200) {
-            return response.json()
-          }
-          else {
-            done = false;
-          }
+        if (response.status === 200) {
+          return response.json()
+        }
+        else {
+          done = false;
+        }
       })
       .then(user => {
-          if (done) {
-              this.loadUser(user);
-              this.onRouteChange("userDisplay");
-          }
-          else {
-              this.onRouteChange("loginError");
-          }
+        if (done) {
+          this.loadUser(user);
+        }
+        else {
+            this.onRouteChange("loginError");
+        }
       });
     }
     else if (route === "addStatus") 
@@ -305,7 +338,7 @@ class App extends Component {
             <FlashMassage duration={5000} persistOnHover={true}>
               <div className="shadow-4 flash-message">Topic Already Added</div>
             </FlashMassage>
-          <AddStatus allTopics = {allTopics} user = {user} onRouteChange={this.onRouteChange}/>
+            <AddStatus allTopics = {allTopics} user = {user} onRouteChange={this.onRouteChange}/>
           </div> :
           route === "addStatus"?
           <AddStatus allTopics = {allTopics} user = {user} onRouteChange={this.onRouteChange}/>:
@@ -314,7 +347,7 @@ class App extends Component {
             <FlashMassage duration={5000} persistOnHover={true}>
               <div className="shadow-4 flash-message">Status Updated Successfully</div>
             </FlashMassage>
-          <UpdateStatus updateValue={this.updateValue} user={user} onRouteChange={this.onRouteChange}/>
+            <UpdateStatus updateValue={this.updateValue} user={user} onRouteChange={this.onRouteChange}/>
           </div>:
           route === "updateStatusFailed"?
           <div>

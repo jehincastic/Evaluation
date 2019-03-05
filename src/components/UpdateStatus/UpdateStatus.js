@@ -78,11 +78,11 @@ const UpdateStatus = (props) => {
                             </li>
                             <li className="flex items-center lh-copy pa2 ph0-l b--black-10">
                                 <div className="wrapper">
-                                    <a onClick={() => props.onRouteChange("userDisplay")} href="#">
+                                    <a onClick={() => props.onRouteChange("update")} href="#">
                                         <i className="icon-hover w2 h2 w3-ns h3-ns br-100 fa fa-chevron-left fa-2x"></i>
                                     </a>
                                     <div className="tooltip">
-                                        <a onClick={() => props.onRouteChange("userDisplay")} href="#">Go Back</a>
+                                        <a onClick={() => props.onRouteChange("update")} href="#">Go Back</a>
                                     </div>
                                 </div>
                             </li>
@@ -100,7 +100,7 @@ const UpdateStatus = (props) => {
                         <div className="contain shadow-4"></div>
                     </div>
                     <div className="containerUpdate shadow-4 tc">
-                        <h1 className="tc titleUpdate">Update Status</h1>
+                        <h2 className="tc titleUpdate">Update Status</h2>
                         <select className='white bg-transparent white-border' onChange={topicdisp} defaultValue='1' name="updateValue">
                             {selectTopic}
                         </select>

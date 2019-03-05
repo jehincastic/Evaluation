@@ -10,6 +10,8 @@ class Hr extends React.Component {
             empId: "",
             topics: [],
             status: [],
+            createdOn: [],
+            updatedOn: [],
             thisRoute: "hr"
         }
     }
@@ -22,7 +24,9 @@ class Hr extends React.Component {
         let done = true;
         this.setState(Object.assign(this.state, { 
             topics: [],
-            status: []
+            status: [],
+            createdOn: [],
+            updatedOn: []
         }));
         fetch(`http://192.168.43.254:8083/HR/searchUser?empid=${empId}`, {
             method: 'post',
@@ -41,7 +45,9 @@ class Hr extends React.Component {
                 for(let i = 0; i < user.length; i++) {      
                     this.setState(Object.assign(this.state, { 
                         topics: [ ...this.state.topics, user[i].topic ],
-                        status: [ ...this.state.status, user[i].status ]
+                        status: [ ...this.state.status, user[i].status ],
+                        createdOn: [...this.state.createdOn, user[i].createdOn],
+                        updatedOn: [...this.state.updatedOn, user[i].updatedOn]
                     }));
                 }   
                 this.setState(Object.assign(this.state, { 
@@ -56,7 +62,7 @@ class Hr extends React.Component {
     }
 
     render() {
-        const { thisRoute, topics, status, empId } = this.state;
+        const { thisRoute, topics, status, empId, createdOn, updatedOn } = this.state;
         return (
             <div>
             {thisRoute === "hr"?
@@ -68,7 +74,7 @@ class Hr extends React.Component {
                 </FlashMassage>
                 <HrDisplay searchCall={this.searchCall} onRouteChange={this.props.onRouteChange} />                
             </div>:
-                <EmpIdDisplay topics={topics} status={status} empId={empId} onRouteChange={this.props.onRouteChange} routeChange={this.routeChange}/>
+                <EmpIdDisplay createdOn={createdOn} updatedOn={updatedOn} topics={topics} status={status} empId={empId} onRouteChange={this.props.onRouteChange} routeChange={this.routeChange}/>
             }   
             </div>
         );

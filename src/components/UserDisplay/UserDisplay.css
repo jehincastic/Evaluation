@@ -96,3 +96,7 @@ a {
 .lte8 .wrapper:hover .tooltip {
     display: block;
 }
+
+.table-pad {
+    margin-top: 60px;
+}

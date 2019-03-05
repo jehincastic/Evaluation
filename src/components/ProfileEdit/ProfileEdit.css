@@ -4,6 +4,7 @@
 
 .btnedit {
     border-radius: 20px;
+    margin-top: -25px !important;
 }
 
 .btnedit:first-child {
@@ -22,7 +23,10 @@
 
 .textName {
     font-size: 30px !important;
-    font-weight: 200 !important;
+    margin-top: -25px !important;
+    padding: 0 !important;
+    font-weight: 600 !important;
+    color: white;
 }
 
 .actionButton {
